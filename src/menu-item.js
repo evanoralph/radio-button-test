@@ -7,7 +7,7 @@ const MenuItem = ({value, isChecked, handleOnchange, index, id, selected}) => {
 
   const _handleOnchange = () => {
     if(!isDisabled()) {
-      handleOnchange({isChecked, index, id});
+      handleOnchange({isChecked, index, id, value});
     }
   }
 

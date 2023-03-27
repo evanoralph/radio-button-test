@@ -3,6 +3,7 @@ import {Container, Grid, Label, Icon, Segment, Button, Radio} from 'semantic-ui-
 import {Menu} from './menus'
 import MenuItem from './menu-item'
 import styled from "styled-components";
+import Swal from 'sweetalert'
 
 const MainLayout = () => {
 
@@ -19,8 +20,20 @@ const MainLayout = () => {
       selected[starting] = {}
       starting++;
     }
-    selected[data.index] = {id: Number(data.id)};
+    selected[data.index] = {id: Number(data.id), value: data.value};
     setSelected([...selected]);
+  }
+
+  const handleSubmit = ()=> {
+
+    const orderItems = selected.map(data=>{
+      return data.value
+    })
+
+    Swal({
+      title: 'Order Added',
+      text: orderItems.join(', ')
+    })
   }
 
   const SubmitButton = () => {
@@ -35,7 +48,7 @@ const MainLayout = () => {
       }
     })
 
-    return <Button disabled={isDisable} color={'facebook'}>Submit</Button>
+    return <Button onClick={handleSubmit} disabled={isDisable} color={'facebook'}>Submit</Button>
   }
 
 
